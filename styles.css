@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    background-color: beige;
+    padding: 10px;
+    min-width: 400px;
+}
+
+#input-id{
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    border: 1px solid green;
+}
+#button-save{
+    color: white;
+    background-color: green;
+    padding: 10px;
+    border: none;
+    
+
+}
+ul{
+    list-style: none;
+    margin-top: 25px;
+    padding-left:0px;
+}
+li{
+    margin-top: 5px;
+}
+li a{
+    color: green
+    ;
+}
+
