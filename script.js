@@ -4,7 +4,7 @@ let inputid = document.getElementById("input-id");
 let inputbtn = document.getElementById("button-save");
 let ul = document.getElementById("ul-li");
 let deletebtn = document.getElementById("button-delete");
-
+const tabbtn = document.getElementById("button-tab");
 
 let ledFromLocal = JSON.parse( localStorage.getItem("led"));
 
@@ -20,6 +20,33 @@ deletebtn.addEventListener("dblclick",function (){
 })
 
 
+
+tabbtn.addEventListener("click", function () {
+
+    chrome.tabs.query(
+        {
+            active: true,
+            currentWindow: true
+        },
+
+        function (tabs) {
+
+            led.push(tabs[0].url);
+
+            localStorage.setItem(
+                "led",
+                JSON.stringify(led)
+            );
+
+            render(led);
+
+            console.log(tabs[0].url);
+        }
+    );
+
+});
+
+
    inputbtn.addEventListener("click", function () {
 
       let value = inputid.value;
@@ -32,13 +59,7 @@ deletebtn.addEventListener("dblclick",function (){
       render(led);
   
       inputid.value = "";
-      
-
-
-  
   });
-
-
 
   function render(arrays) {
 
@@ -55,6 +76,8 @@ deletebtn.addEventListener("dblclick",function (){
 
    ul.innerHTML = listitem;
 }
+
+
 
 
 
