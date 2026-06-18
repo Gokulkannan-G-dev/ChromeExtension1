@@ -3,7 +3,21 @@ let led = [];
 let inputid = document.getElementById("input-id");
 let inputbtn = document.getElementById("button-save");
 let ul = document.getElementById("ul-li");
+let deletebtn = document.getElementById("button-delete");
 
+
+let ledFromLocal = JSON.parse( localStorage.getItem("led"));
+
+if(ledFromLocal){
+    led = ledFromLocal;
+    render(led);
+}
+
+deletebtn.addEventListener("dblclick",function (){
+    localStorage.clear();
+    led = [];
+    render(led);
+})
 
 
    inputbtn.addEventListener("click", function () {
@@ -14,24 +28,27 @@ let ul = document.getElementById("ul-li");
   
       localStorage.setItem("led", JSON.stringify(led));
   
-      renderItems();
+
+      render(led);
   
       inputid.value = "";
-      console.log(localStorage.getItem("led"));
+      
+
+
   
   });
 
 
 
-  function renderItems() {
+  function render(arrays) {
 
    let listitem = "";
 
-   for (let i = 0; i < led.length; i++) {
+   for (let i = 0; i < arrays.length; i++) {
 
        listitem += `
        <li>
-           <a target="_blank" href="${led[i]}">${led[i]}</a>
+           <a target="_blank" href="${arrays[i]}">${arrays[i]}</a>
        </li>
        `;
    }
